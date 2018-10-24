@@ -1,6 +1,6 @@
-import test from 'ava';
-{{if hasPuppeteer}}import puppeteerHelper from './_puppeteer';{{/if}}
-{{if hasPock}}import './_pock';{{/if}}
+import test from 'ava';{{if hasPuppeteer}}
+import puppeteerHelper from './_puppeteer';{{/if}}{{if hasPock}}
+import './_pock';{{/if}}
 
 /* global todo */
 

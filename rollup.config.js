@@ -1,7 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
-{{if compressTool === 'uglify'}}import { uglify } from 'rollup-plugin-uglify';{{/if}}
-{{if compressTool === 'minify'}}import minify from 'rollup-plugin-babel-minify';{{/if}}
+{{if compressTool === 'uglify'}}import { uglify } from 'rollup-plugin-uglify';{{/if}}{{if compressTool === 'minify'}}import minify from 'rollup-plugin-babel-minify';{{/if}}
 import { browser, module, name, version, license, author, homepage } from './package.json';
 
 /**
