@@ -24,3 +24,4 @@ deploy:
   on:
     tags: true
     repo: {{author}}/{{project}}
+    branch: master
