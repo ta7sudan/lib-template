@@ -110,9 +110,9 @@ module.exports = function (projectName) {
 					excludes.push('test/_pock.js');
 				}
 			} else {
-				excludes.push('test/**', 'example/test.html');
+				excludes.push('test', 'example/test.html');
 				if (!hasPock) {
-					excludes.push('.pockrc.yml', 'example/router/**');
+					excludes.push('.pockrc.yml', 'example/router');
 				}
 				if (!hasPuppeteer) {
 					excludes.push('.npmrc');
