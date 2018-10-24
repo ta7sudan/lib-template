@@ -1,0 +1,87 @@
+{
+  "name": "{{project}}",
+  "version": "0.1.0",
+  "description": "{{desc}}",
+  "main": "dist/{{bundleName}}.umd.js",
+  "module": "dist/{{bundleName}}.esm.js",
+  "browser": "dist/{{bundleName}}.umd.js",
+  "sideEffects": false,
+  "types": "types/index.d.ts",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "prebuild": "rimraf dist",
+    "build-dev": "rollup -c rollup.dev.js",{{if hasPock}}
+    "start": "concurrently \"rollup -w -c rollup.dev.js\" \"pock\" \"opn http://127.0.0.1:8080\"",{{/if}}
+    "lint": "eslint src test",
+    "format": "prettier --config .prettierrc.js --write src/**/*.js test/**/*.js",
+    "inspect": "jsinspect src",
+    "test": "ava -v"{{if !hasTravis}},
+    "prepare": "npm test && npm run build"{{/if}}
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/{{author}}/{{project}}.git"
+  },
+  "keywords": [
+    {{each keywords $kwd $idx}}"{{@$kwd}}"{{if $idx != keywords.length - 1}},{{/if}}{{/each}}
+  ],
+  "author": "{{author}}",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/{{author}}/{{project}}/issues"
+  },
+  "files": [
+    "src",
+    "dist",
+    "example",
+    "types"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run build && npm run build-dev && git add ."{{if !hasTravis}},
+      "pre-push": "npm test"{{/if}}
+    }
+  },{{if hasTest}}
+  "ava": {
+    "require": [
+      "./test/_register",
+      "@babel/polyfill"
+    ]
+  },{{/if}}
+  "homepage": "https://github.com/{{author}}/{{project}}#readme",
+  "browserslist": [
+    {{if compressTool === 'uglify'}}"> 1%",
+    "last 2 versions",
+    "not ie <= 9"{{/if}}{{if compressTool === 'minify'}}"last 2 iOS major versions"{{/if}}
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/register": "^7.0.0",{{if hasTest}}
+    "ava": "1.0.0-rc.1",{{/if}}
+    "babel-plugin-array-includes": "^2.0.3",{{if hasPock}}
+    "concurrently": "^4.0.1",{{/if}}
+    "eslint": "^5.7.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.1.2",
+    "jsinspect": "^0.12.7",
+    "lint-staged": "^7.3.0",{{if hasPock}}
+    "opn-cli": "^3.1.0",
+    "pock": "^0.3.3",{{/if}}
+    "prettier": "^1.14.3", {{if hasPuppeteer}}
+    "puppeteer": "^1.9.0",{{/if}}
+    "rimraf": "^2.6.2",
+    "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^4.0.3", {{if compressTool === 'minify'}}
+    "rollup-plugin-babel-minify": "^6.1.1",{{/if}}
+    "rollup-plugin-replace": "^2.1.0"{{if compressTool === 'uglify'}},
+    "rollup-plugin-uglify": "^6.0.0"{{/if}}
+  }
+}

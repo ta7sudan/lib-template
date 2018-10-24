@@ -1,2 +1,2 @@
-# lib-template
+# {{project}}
 A library template for dulu
