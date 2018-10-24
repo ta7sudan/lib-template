@@ -43,10 +43,12 @@ module.exports = function (projectName) {
 			},
 			{
 				name: 'hasPuppeteer',
-				when: 'hasTest',
 				type: 'confirm',
 				message: 'Use puppeteer for tests?',
-				default: false
+				default: false,
+				when({ hasTest }) {
+					return hasTest;
+				}
 			},
 			{
 				name: 'hasPock',
@@ -62,11 +64,13 @@ module.exports = function (projectName) {
 			},
 			{
 				name: 'email',
-				when: 'hasTravis',
 				type: 'input',
 				message: 'Email',
 				validate(input) {
 					return !!input;
+				},
+				when({ hasTravis }) {
+					return hasTravis;
 				}
 			},
 			{
@@ -106,9 +110,9 @@ module.exports = function (projectName) {
 					excludes.push('test/_pock.js');
 				}
 			} else {
-				excludes.push('test', 'example/test.html');
+				excludes.push('test/**', 'example/test.html');
 				if (!hasPock) {
-					excludes.push('.pockrc.yml', 'example/router');
+					excludes.push('.pockrc.yml', 'example/router/**');
 				}
 				if (!hasPuppeteer) {
 					excludes.push('.npmrc');
