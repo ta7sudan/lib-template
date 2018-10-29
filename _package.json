@@ -84,11 +84,11 @@
     "nyc": "^13.1.0",{{/if}}{{if hasPock}}
     "opn-cli": "^3.1.0",
     "pock": "^0.3.3",{{/if}}
-    "prettier": "^1.14.3", {{if hasPuppeteer}}
+    "prettier": "^1.14.3",{{if hasPuppeteer}}
     "puppeteer": "^1.9.0",{{/if}}
     "rimraf": "^2.6.2",
     "rollup": "^0.66.6",
-    "rollup-plugin-babel": "^4.0.3", {{if compressTool === 'minify'}}
+    "rollup-plugin-babel": "^4.0.3",{{if compressTool === 'minify'}}
     "rollup-plugin-babel-minify": "^6.1.1",{{/if}}
     "rollup-plugin-replace": "^2.1.0"{{if compressTool === 'uglify'}},
     "rollup-plugin-uglify": "^6.0.0"{{/if}}
