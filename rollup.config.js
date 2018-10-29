@@ -1,6 +1,7 @@
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 {{if compressTool === 'uglify'}}import { uglify } from 'rollup-plugin-uglify';{{/if}}{{if compressTool === 'minify'}}import minify from 'rollup-plugin-babel-minify';{{/if}}
+import { relative } from 'path';
 import { browser, module, name, version, license, author, homepage } from './package.json';
 
 /**
@@ -73,7 +74,7 @@ export default [
 			format: 'umd',
 			sourcemap: true,
 			// sourcemap生成之后在devtools本来看到的文件是src/index.js, 这个选项可以变成{{bundleName}}.js
-			sourcemapPathTransform: () => '{{bundleName}}.js'
+			sourcemapPathTransform: path => ~path.indexOf('index') ? '{{bundleName}}.js' : relative('src', path)
 		}
 	}
 ];

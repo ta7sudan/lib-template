@@ -15,8 +15,9 @@
     "start": "concurrently \"rollup -w -c rollup.dev.js\" \"pock\" \"opn http://127.0.0.1:8080\"",{{/if}}
     "lint": "eslint src test",
     "format": "prettier --config .prettierrc.js --write src/**/*.js test/**/*.js",
-    "inspect": "jsinspect src",
-    "test": "ava -v"{{if !hasTravis}},
+    "inspect": "jsinspect src",{{if hasTest}}
+    "test": "nyc ava -v",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"{{/if}}{{if !hasTravis}},
     "prepare": "npm test && npm run build"{{/if}}
   },
   "repository": {
@@ -53,6 +54,12 @@
       "./test/_register",
       "@babel/polyfill"
     ]
+  },
+  "nyc": {
+    "cache": true,
+    "include": [
+      "src/**/*.js"
+    ]
   },{{/if}}
   "homepage": "https://github.com/{{author}}/{{project}}#readme",
   "browserslist": [
@@ -66,13 +73,15 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",{{if hasTest}}
     "ava": "1.0.0-rc.1",{{/if}}
-    "babel-plugin-array-includes": "^2.0.3",{{if hasPock}}
+    "babel-plugin-array-includes": "^2.0.3",{{if hasTest}}
+    "codecov": "^3.1.0",{{/if}}{{if hasPock}}
     "concurrently": "^4.0.1",{{/if}}
     "eslint": "^5.7.0",
     "eslint-plugin-prettier": "^3.0.0",
     "husky": "^1.1.2",
     "jsinspect": "^0.12.7",
-    "lint-staged": "^7.3.0",{{if hasPock}}
+    "lint-staged": "^7.3.0",{{if hasTest}}
+    "nyc": "^13.1.0",{{/if}}{{if hasPock}}
     "opn-cli": "^3.1.0",
     "pock": "^0.3.3",{{/if}}
     "prettier": "^1.14.3", {{if hasPuppeteer}}

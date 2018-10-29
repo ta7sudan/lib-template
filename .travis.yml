@@ -7,8 +7,10 @@ cache:
   directories:
   - "$HOME/.npm"
 script:
-- npm run lint
-{{if hasTest}}- npm test{{/if}}
+- npm run lint{{if hasTest}}
+- npm test
+after_success:
+- npm run coverage{{/if}}
 git:
   depth: 1
 notifications:

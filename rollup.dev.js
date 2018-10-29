@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
+import { relative } from 'path';
 import { name } from './package.json';
 
 export default [
@@ -22,7 +23,7 @@ export default [
 			file: 'example/scripts/{{bundleName}}.umd.js',
 			format: 'umd',
 			sourcemap: true,
-			sourcemapPathTransform: () => '{{bundleName}}.js'
+			sourcemapPathTransform: path => ~path.indexOf('index') ? '{{bundleName}}.js' : relative('src', path)
 		}
 	}
 ];
