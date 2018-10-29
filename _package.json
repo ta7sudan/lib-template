@@ -50,6 +50,7 @@
     }
   },{{if hasTest}}
   "ava": {
+    "cache": true,
     "require": [
       "./test/_register",
       "@babel/polyfill"
