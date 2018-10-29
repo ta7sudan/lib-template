@@ -18,7 +18,7 @@
     "inspect": "jsinspect src"{{if hasTest}},
     "test": "nyc ava -v",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"{{/if}}{{if !hasTravis}},
-    "prepare": "npm test && npm run build"{{/if}}
+    "prepare": "{{if hasTest}}npm test && {{/if}}npm run build"{{/if}}
   },
   "repository": {
     "type": "git",
@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run build && npm run build-dev && git add ."{{if !hasTravis}},
+      "pre-commit": "lint-staged && npm run build && npm run build-dev && git add ."{{if !hasTravis&&hasTest}},
       "pre-push": "npm test"{{/if}}
     }
   },{{if hasTest}}
