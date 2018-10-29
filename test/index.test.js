@@ -14,6 +14,6 @@ import './_pock';{{/if}}
 const sleep = time => new Promise(rs => setTimeout(rs, time));
 const isObj = o => Object.prototype.toString.call(o) === '[object Object]';
 
-test('todo', {{if hasPuppeteer}}puppeteerHelper(), {{/if}}async (t, page) => {
+test('todo', {{if hasPuppeteer}}puppeteerHelper(), {{/if}}async {{if hasPuppeteer}}(t, page){{else}}t{{/if}} => {
 	t.pass();
 });
