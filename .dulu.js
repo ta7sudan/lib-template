@@ -101,6 +101,14 @@ module.exports = function (projectName) {
 				templates.push('.travis.yml');
 			}
 
+			if (!hasPock) {
+				excludes.push('.pockrc.yml', 'example/router');
+			}
+
+			if (!hasPuppeteer) {
+				excludes.push('.npmrc');
+			}
+
 			if (hasTest) {
 				templates.push('test/index.test.js');
 				if (!hasPuppeteer) {
@@ -111,12 +119,6 @@ module.exports = function (projectName) {
 				}
 			} else {
 				excludes.push('test', 'example/test.html');
-				if (!hasPock) {
-					excludes.push('.pockrc.yml', 'example/router');
-				}
-				if (!hasPuppeteer) {
-					excludes.push('.npmrc');
-				}
 			}
 
 			return {
