@@ -67,6 +67,9 @@ export default [
 				comments: false
 			}){{/if}}
 		],
+		treeshake: {
+			propertyReadSideEffects: false
+		},
 		output: {
 			name,
 			banner,
