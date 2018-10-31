@@ -32,13 +32,14 @@ export default [
 		},
 		output: [
 			{
+				// banner,
 				file: module,
 				format: 'esm',
 				sourcemap: true
 			},
 			{
 				name,
-				banner,
+				// banner,
 				file: browser,
 				format: 'umd',
 				sourcemap: true
@@ -71,7 +72,7 @@ export default [
 		},
 		output: {
 			name,
-			banner,
+			// banner,
 			file: 'dist/{{bundleName}}.min.js',
 			format: 'umd',
 			sourcemap: true,
