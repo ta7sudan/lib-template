@@ -32,14 +32,12 @@ export default [
 		},
 		output: [
 			{
-				// banner,
 				file: module,
 				format: 'esm',
 				sourcemap: true
 			},
 			{
 				name,
-				// banner,
 				file: browser,
 				format: 'umd',
 				sourcemap: true
