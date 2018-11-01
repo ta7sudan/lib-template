@@ -2,7 +2,7 @@
   "name": "{{project}}",
   "version": "0.1.0",
   "description": "{{desc}}",
-  "main": "dist/{{bundleName}}.umd.js",
+  "main": "dist/{{bundleName}}.cjs.js",
   "module": "dist/{{bundleName}}.esm.js",
   "browser": "dist/{{bundleName}}.umd.js",
   "sideEffects": false,
