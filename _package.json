@@ -13,7 +13,7 @@
     "prebuild": "rimraf dist",
     "build-dev": "rollup -c rollup.dev.js",{{if hasPock}}
     "start": "concurrently \"rollup -w -c rollup.dev.js\" \"pock\" \"opn http://127.0.0.1:8080\"",{{/if}}
-    "lint": "eslint src{{if hasTest} test{{/if}}",
+    "lint": "eslint src{{if hasTest}} test{{/if}}",
     "format": "prettier --config .prettierrc.js --write src/**/*.js test/**/*.js",
     "inspect": "jsinspect src"{{if hasTest}},
     "test": "nyc ava -v",
