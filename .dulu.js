@@ -84,6 +84,12 @@ module.exports = function (projectName) {
 					name: 'uglify',
 					value: 'uglify'
 				}]
+			},
+			{
+				name: 'useForNode',
+				type: 'confirm',
+				message: 'Use for node?',
+				default: false
 			}
 		],
 		complete(answers) {

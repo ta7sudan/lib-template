@@ -68,7 +68,7 @@ export default [
 		treeshake: {
 			propertyReadSideEffects: false
 		},
-		output: [
+		{{if useForNode}}output: [
 			{
 				name,
 				banner,
@@ -84,6 +84,14 @@ export default [
 				format: 'cjs',
 				sourcemap: true
 			}
-		]
+		]{{else}}output: {
+			name,
+			banner,
+			file: 'dist/{{bundleName}}.min.js',
+			format: 'umd',
+			sourcemap: true,
+			// sourcemap生成之后在devtools本来看到的文件是src/index.js, 这个选项可以变成{{bundleName}}.js
+			sourcemapPathTransform: path => ~path.indexOf('index') ? '{{bundleName}}.js' : relative('src', path)
+		}{{/if}}
 	}
 ];
