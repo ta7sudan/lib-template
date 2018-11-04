@@ -69,10 +69,10 @@
     "not ie <= 9"{{/if}}{{if compressTool === 'minify'}}"last 2 iOS major versions"{{/if}}
   ],
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/polyfill": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/register": "^7.0.0",{{if hasTest}}
+    "@babel/core": "^7.1.2",{{if hasTest}}
+    "@babel/polyfill": "^7.0.0",{{/if}}
+    "@babel/preset-env": "^7.1.0",{{if hasTest}}
+    "@babel/register": "^7.0.0",
     "ava": "1.0.0-rc.1",{{/if}}
     "babel-plugin-array-includes": "^2.0.3",{{if hasTest}}
     "codecov": "^3.1.0",{{/if}}{{if hasPock}}
