@@ -27,6 +27,7 @@ export default [
 				exclude: 'node_modules/**'
 			})
 		],
+		external: ['todo'],
 		treeshake: {
 			propertyReadSideEffects: false
 		},
@@ -40,7 +41,10 @@ export default [
 				name,
 				file: browser,
 				format: 'umd',
-				sourcemap: true
+				sourcemap: true,
+				globals: {
+					todo: 'todo'
+				}
 			}
 		]
 	},
@@ -65,6 +69,7 @@ export default [
 				comments: false
 			}){{/if}}
 		],
+		external: ['todo'],
 		treeshake: {
 			propertyReadSideEffects: false
 		},
@@ -76,7 +81,10 @@ export default [
 				format: 'umd',
 				sourcemap: true,
 				// sourcemap生成之后在devtools本来看到的文件是src/index.js, 这个选项可以变成{{bundleName}}.js
-				sourcemapPathTransform: path => ~path.indexOf('index') ? '{{bundleName}}.js' : relative('src', path)
+				sourcemapPathTransform: path => ~path.indexOf('index') ? '{{bundleName}}.js' : relative('src', path),
+				globals: {
+					todo: 'todo'
+				}
 			},
 			{
 				banner,
@@ -91,7 +99,10 @@ export default [
 			format: 'umd',
 			sourcemap: true,
 			// sourcemap生成之后在devtools本来看到的文件是src/index.js, 这个选项可以变成{{bundleName}}.js
-			sourcemapPathTransform: path => ~path.indexOf('index') ? '{{bundleName}}.js' : relative('src', path)
+			sourcemapPathTransform: path => ~path.indexOf('index') ? '{{bundleName}}.js' : relative('src', path),
+			globals: {
+				todo: 'todo'
+			}
 		}{{/if}}
 	}
 ];
