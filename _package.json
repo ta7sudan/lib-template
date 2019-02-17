@@ -14,7 +14,7 @@
     "build-dev": "rollup -c rollup.dev.js",{{if hasPock}}
     "start": "concurrently \"rollup -w -c rollup.dev.js\" \"pock\" \"opn http://127.0.0.1:8080\"",{{/if}}
     "lint": "eslint src{{if hasTest}} test{{/if}}",
-    "format": "prettier --config .prettierrc.js --write src/**/*.js test/**/*.js",
+    "format": "prettier --config .prettierrc.js --write {{if hasTest}}{src,test}/**/*.js{{else}}src/**/*.js{{/if}}",
     "inspect": "jsinspect src"{{if hasTest}},
     "test": "nyc ava -v",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
@@ -70,28 +70,28 @@
     "not ie <= 9"{{/if}}{{if compressTool === 'minify'}}"last 2 iOS major versions"{{/if}}
   ],
   "devDependencies": {
-    "@babel/core": "^7.2.2",{{if hasTest}}
+    "@babel/core": "^7.3.3",{{if hasTest}}
     "@babel/polyfill": "^7.2.5",{{/if}}
-    "@babel/preset-env": "^7.2.3",{{if hasTest}}
+    "@babel/preset-env": "^7.3.1",{{if hasTest}}
     "@babel/register": "^7.0.0",
-    "ava": "^1.1.0",{{/if}}
+    "ava": "^1.2.1",{{/if}}
     "babel-plugin-array-includes": "^2.0.3",{{if hasTest}}
-    "codecov": "^3.1.0",{{/if}}{{if hasPock}}
+    "codecov": "^3.2.0",{{/if}}{{if hasPock}}
     "concurrently": "^4.1.0",{{/if}}
-    "eslint": "^5.12.0",
+    "eslint": "^5.14.0",
     "eslint-plugin-prettier": "^3.0.1",
     "husky": "^1.3.1",
     "jsinspect": "^0.12.7",
-    "lint-staged": "^8.1.0",{{if hasTest}}
-    "nyc": "^13.1.0",{{/if}}{{if hasPock}}
+    "lint-staged": "^8.1.4",{{if hasTest}}
+    "nyc": "^13.3.0",{{/if}}{{if hasPock}}
     "opn-cli": "^4.0.0",
     "pock": "^0.3.3",{{/if}}
-    "prettier": "^1.15.3",{{if hasPuppeteer}}
+    "prettier": "^1.16.4",{{if hasPuppeteer}}
     "puppeteer": "^1.11.0",{{/if}}
     "rimraf": "^2.6.3",
-    "rollup": "^1.1.0",
-    "rollup-plugin-babel": "^4.3.0",{{if compressTool === 'minify'}}
-    "rollup-plugin-babel-minify": "^6.2.0",{{/if}}
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2",{{if compressTool === 'minify'}}
+    "rollup-plugin-babel-minify": "^7.0.0",{{/if}}
     "rollup-plugin-replace": "^2.1.0"{{if compressTool === 'uglify'}},
     "rollup-plugin-uglify": "^6.0.1"{{/if}}
   }
