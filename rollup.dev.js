@@ -10,7 +10,8 @@ export default {
 			DEBUG: JSON.stringify(true)
 		}),
 		babel({
-			exclude: 'node_modules/**'
+			exclude: 'node_modules/**',
+			extensions: ['.js']
 		})
 	],
 	treeshake: {
