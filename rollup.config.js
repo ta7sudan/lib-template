@@ -24,7 +24,8 @@ export default [
 				DEBUG: JSON.stringify(false)
 			}),
 			babel({
-				exclude: 'node_modules/**'
+				exclude: 'node_modules/**',
+				extensions: ['.js']
 			})
 		],
 		external: ['todo'],
@@ -55,7 +56,8 @@ export default [
 				DEBUG: JSON.stringify(false)
 			}),
 			babel({
-				exclude: 'node_modules/**'
+				exclude: 'node_modules/**',
+				extensions: ['.js']
 			}),
 			{{if compressTool === 'uglify'}}uglify({
 				compress: {
