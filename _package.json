@@ -17,6 +17,7 @@
     "format": "prettier --config .prettierrc.js --write {{if hasTest}}{src,test}/**/*.js{{else}}src/**/*.js{{/if}}",
     "inspect": "jsinspect src"{{if hasTest}},
     "test": "nyc ava -v",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "report": "nyc report --reporter=html"{{/if}}{{if !hasTravis}},
     "prepare": "{{if hasTest}}npm test && {{/if}}npm run build"{{/if}}
@@ -78,6 +79,8 @@
     "babel-plugin-array-includes": "^2.0.3",{{if hasTest}}
     "codecov": "^3.2.0",{{/if}}{{if hasPock}}
     "concurrently": "^4.1.0",{{/if}}
+    "conventional-changelog-cli": "^2.0.12",
+    "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.14.0",
     "eslint-plugin-prettier": "^3.0.1",
     "husky": "^1.3.1",
@@ -94,5 +97,10 @@
     "rollup-plugin-babel-minify": "^7.0.0",{{/if}}
     "rollup-plugin-replace": "^2.1.0"{{if compressTool === 'uglify'}},
     "rollup-plugin-uglify": "^6.0.1"{{/if}}
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
