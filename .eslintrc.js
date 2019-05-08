@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
 	env: {
 		es6: true,
 		browser: true,
@@ -13,6 +14,7 @@ module.exports = {
 		sourceType: 'module'
 	},
 	rules: {
+		'no-undef': 'error',
 		'no-console': 'off',
 		'no-debugger': 'off',
 		'no-extra-boolean-cast': 'off',
